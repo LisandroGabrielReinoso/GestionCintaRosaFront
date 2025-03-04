@@ -1,7 +1,10 @@
-import { FaTrash } from "react-icons/fa";
+import { FaTrash, FaUserPlus, FaUserEdit } from "react-icons/fa";
 import { useEffect, useState } from "react";
 import { getPatients } from "../api/methods/patients";
 import IPatients from "../interfaces/IPatients";
+import Button from "./ui/Button";
+import Input from "./ui/Input";
+import QuickAccessButton from "./ui/QuickAccessButton";
 
 const Patients = () => {
   const [items, setItems] = useState<IPatients[]>([]);
@@ -22,13 +25,25 @@ const Patients = () => {
   }, []);
 
   const handleDelete = (id: number) => {
-    setItems(items.filter((item) => item.Id !== id));
+    setItems(items.filter((item) => item.id !== id));
     // Acá podés agregar la lógica para eliminarlo en la API si querés
   };
 
   return (
-    <div className="flex-1 p-6 overflow-y-auto">
-      <h2 className="text-xl font-bold text-black mb-4">Lista de Pacientes</h2>
+    <div className="p-6 bg-gray-900 text-white min-h-screen">
+      <h2 className="text-xl font-bold text-yellow-400 mb-4">Lista de Pacientes</h2>
+
+      <div className="bg-gray-800 p-4 rounded-xl shadow-lg col-span-2 flex gap-4">
+        <QuickAccessButton icon={<FaUserPlus />} text="Nuevo Paciente" />
+        <QuickAccessButton icon={<FaUserEdit />} text="Editar Paciente" />
+        <QuickAccessButton icon={<FaTrash />} text="Eliminar Paciente" />
+        <Input
+         placeholder="Busca Pacientes..."
+         className="w-full h-15 bg-gray-800 text-white border-gray-700 focus:border-gold-300 py-2 px-3"
+        />
+        <Button className="bg-gold-400 text-gray-900 h-13">Buscar</Button>
+      </div>
+      <br />
 
       <div className="bg-gray-800 rounded-lg shadow-md p-4">
         {items.length > 0 ? (
@@ -49,13 +64,6 @@ const Patients = () => {
                     <span>| Tipo de Sangre: {item.tipoSangre}</span>
                   </div>
                 </div>
-
-                <button
-                  onClick={() => handleDelete(item.Id)}
-                  className="text-red-400 hover:text-red-600 transition"
-                >
-                  <FaTrash />
-                </button>
               </li>
             ))}
           </ul>

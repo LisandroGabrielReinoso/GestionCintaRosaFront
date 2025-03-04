@@ -11,6 +11,13 @@ const Home = () => {
   const navigate = useNavigate();
   const [userName, setUserName] = useState("Matias Prieto");
 
+  useEffect(() => {
+    // Si la ruta actual es /home y no estamos ya en /home/main, redirigimos
+    if (window.location.pathname === "/home") {
+      navigate("/home/main");  // Redirige a la ruta principal
+    }
+  }, [navigate]);
+
   return (
     <>
       <div className="flex">

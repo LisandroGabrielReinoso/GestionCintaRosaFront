@@ -1,21 +1,23 @@
-import { FaUserPlus, FaClipboardList, FaCalendarAlt, FaChartBar, FaBell } from "react-icons/fa";
-import { useState } from "react";
+import { FaUserPlus, FaClipboardList, FaCalendarAlt, FaChartBar } from "react-icons/fa";
+import { SetStateAction, useState } from "react";
 import Input  from "./ui/Input";
 import  Button  from "./ui/Button";
+import SummaryCard from "./ui/SummaryCard";
+import QuickAccessButton from "./ui/QuickAccessButton";
 
 const HomeDashboard = () => {
   const [search, setSearch] = useState("");
 
   return (
     <div className="p-6 bg-gray-900 text-white min-h-screen">
-      <h1 className="text-3xl font-bold text-gold-400 mb-6">Inicio</h1>
+      <h1 className="text-3xl font-bold text-yellow-400 mb-6">Inicio</h1>
       
       {/* Barra de Búsqueda */}
       <div className="mb-6 flex gap-4">
         <Input 
           placeholder="Buscar pacientes, turnos, consultas..."
           value={search}
-          onChange={(e) => setSearch(e.target.value)}
+          onChange={(e: { target: { value: SetStateAction<string>; }; }) => setSearch(e.target.value)}
           className="w-full bg-gray-800 text-white border-gray-700 focus:border-gold-400"
         />
         <Button className="bg-gold-400 text-gray-900">Buscar</Button>
@@ -51,22 +53,8 @@ const HomeDashboard = () => {
   );
 };
 
-const SummaryCard = ({ title, count, highlight }: { title: string, count: number, highlight?: boolean }) => {
-  return (
-    <div className={`p-4 rounded-xl shadow-lg ${highlight ? "bg-red-600" : "bg-gray-800"}`}>
-      <h3 className="text-lg font-semibold text-gray-300">{title}</h3>
-      <p className="text-2xl font-bold text-gold-400">{count}</p>
-    </div>
-  );
-};
 
-const QuickAccessButton = ({ icon, text }: { icon: React.ReactElement, text: string }) => {
-  return (
-    <button className="flex flex-col items-center justify-center p-4 bg-gray-700 hover:bg-gold-400 text-white hover:text-gray-900 rounded-xl shadow-md transition-all">
-      <div className="text-3xl mb-2">{icon}</div>
-      <span className="text-sm font-semibold">{text}</span>
-    </button>
-  );
-};
+
+
 
 export default HomeDashboard;

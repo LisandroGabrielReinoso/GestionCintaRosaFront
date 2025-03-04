@@ -1,12 +1,12 @@
 export default interface IPatients{
-    Id:number;
-    Nombre:string;
-    Apellido:string;
-    Edad:number;
-    DNI:number;
-    Direccion:string;
-    Telefono:string;
-    Email:string;
-    FechaNacimiento:Date;
-    TipoSangre:string;
+    id:number;
+    nombre:string;
+    apellido:string;
+    edad:number;
+    dni:number;
+    direccion:string;
+    telefono:string;
+    email:string;
+    fechaNacimiento:Date;
+    tipoSangre:string;
 }

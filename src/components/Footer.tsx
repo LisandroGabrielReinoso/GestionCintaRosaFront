@@ -11,8 +11,8 @@ function Footer() {
   
           {/* Info de contacto */}
           <div className="mb-4 md:mb-0">
-            <p className="text-sm">📍 San Miguel de Tucumán, Argentina</p>
-            <p className="text-sm">📧 contacto@example.com</p>
+            <p className="text-sm">📍 Pasaje Oncativo 984, San Miguel de Tucumán, Argentina</p>
+            <p className="text-sm">📧 lacintaroja@example.com</p>
             <p className="text-sm">📞 +54 381 1234567</p>
           </div>
   
