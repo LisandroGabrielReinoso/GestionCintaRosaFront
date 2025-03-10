@@ -1,14 +1,24 @@
 import { useState } from "react";
+import Tabs from "./ui/Tabs";
+import Button from "./ui/Button";
 
 const ClinicsStories = () => {
-  const [activeTab, setActiveTab] = useState("consultas");
+  const tabData = [
+    {label:"Consultas", content: <Consultas/>},
+    {label:"Diagnosticos", content: <Diagnosticos/>},
+    {label:"Tratamientos", content: <Tratamientos/>},
+    {label:"Signos Vitales", content: <SignosVitales/>},
+    {label:"Antecedentes", content: <Antecedentes/>}
+  
+  ]
 
   return (
     <div className="p-6 bg-gray-900 text-white min-h-screen">
       {/* Header con datos del paciente */}
       <div className="bg-gray-800 p-4 rounded-xl shadow-lg">
-        <h2 className="text-2xl font-bold">Historia Clínica</h2>
-        <p className="text-gray-400">Información del paciente</p>
+        <h2 className="text-2xl font-bold py-2">Historia Clínica</h2>
+        <Button>Buscar Paciente</Button>
+        <p className="text-gray-400 py-1">Información del paciente</p>
         <div className="grid grid-cols-2 gap-4 mt-4">
           <p><strong>Nombre:</strong> Juan Pérez</p>
           <p><strong>DNI:</strong> 12345678</p>
@@ -18,28 +28,8 @@ const ClinicsStories = () => {
           <p><strong>Obra Social:</strong> OSDE</p>
         </div>
       </div>
-
-      {/* Tabs de navegación */}
-      <div className="flex gap-4 mt-6">
-        {["consultas", "diagnosticos", "tratamientos", "signos", "antecedentes"].map(tab => (
-          <button
-            key={tab}
-            onClick={() => setActiveTab(tab)}
-            className={`px-4 py-2 rounded-md ${activeTab === tab ? "bg-gold-400 text-gray-900" : "bg-gray-700 text-white"}`}
-          >
-            {tab.charAt(0).toUpperCase() + tab.slice(1)}
-          </button>
-        ))}
-      </div>
-
-      {/* Contenido dinámico según la pestaña */}
-      <div className="mt-4 p-4 bg-gray-800 rounded-xl shadow-lg">
-        {activeTab === "consultas" && <Consultas />}
-        {activeTab === "diagnosticos" && <Diagnosticos />}
-        {activeTab === "tratamientos" && <Tratamientos />}
-        {activeTab === "signos" && <SignosVitales />}
-        {activeTab === "antecedentes" && <Antecedentes />}
-      </div>
+    <br />
+    <Tabs tabs={tabData}/>
     </div>
   );
 };
